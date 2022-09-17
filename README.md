@@ -60,7 +60,7 @@ options:
 ````
 
 
-### PhP
+### PHP
 
 ```bash
 $ cd php
