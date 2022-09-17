@@ -139,7 +139,7 @@
         for(var i=0; i<dom_clobbering_markups.length; i++){
         	input = dom_clobbering_markups[i]["Markup"];
 			
-			// // dompurify
+			// dompurify
 			try{
 				output = DOMPurify.sanitize(input);
 				results['dompurify'].push({
@@ -149,7 +149,7 @@
 			}catch(err) {console.warn(err); output = 'error'}
 
 
-			// // caja
+			// caja
 			try{
 				output = html_sanitize(input, urlX, idX);
 				results['caja'].push({
@@ -160,7 +160,7 @@
 
 
 
-			// // closure 
+			// closure 
 			try {
 				var fragment = goog.dom.safeHtmlToNode(closure_sanitizer.sanitize(input));
 				var template = window.document.createElement('template');
@@ -174,7 +174,7 @@
 			catch(err) {console.warn(err); output = 'error'}
 
 
-			// // jsxss
+			// jsxss
 			try{
 				output = filterXSS(input);
 				results['jsxss'].push({
@@ -184,7 +184,7 @@
 			}catch(err) {console.warn(err); output = 'error'}
 
 
-			// // sanitizehtml
+			// sanitizehtml
 			try{
 				output = sanitizeHtml(input);
 				results['sanitizehtml'].push({
