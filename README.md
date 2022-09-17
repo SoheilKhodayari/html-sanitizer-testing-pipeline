@@ -1,8 +1,49 @@
-# Sanitizer Testing Pipeline
+# HTML Sanitizer Testing Pipeline (HTML-ST)
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Sanitizer-Testing-Pipeline&url=https://soheilkhodayari.github.io/html-sanitizers-testing-pipeline/)
 
-A collection of scripts to test popular HTML sanitizers of different programming languages.
+A collection of scripts to test and run popular HTML sanitizers of five different programming languages. 
+
+Please note that at its current state, the code is a PoC and not a production-ready API.
+
+## Features
+
+You can test the following sanitizers using HTML-ST:
+
+| **Language**    | **Sanitizer**           | **Link**                                                                                            |
+|---------------- |------------------------ |---------------------------------------------------------------------------------------------------- |
+| Client-side JS  | DOMPurify               | https://github.com/cure53/DOMPurify                                                                 |
+|                 | Google Closure Library  | https://github.com/google/closure-library/blob/master/closure/goog/html/sanitizer/htmlsanitizer.js  |
+|                 | JS-XSS                  | https://github.com/leizongmin/js-xss                                                                |
+|                 | Sanitize-HTML           | https://github.com/apostrophecms/sanitize-html                                                      |
+|                 | Google Caja             | https://code.google.com/archive/p/google-caja/wikis/JsHtmlSanitizer.wiki                            |
+|                 | Angular-sanitize        | https://docs.angularjs.org/api/ngSanitize/service/$sanitize                                         |
+| Node.js         | Insane                  | https://github.com/bevacqua/insane                                                                  |
+|                 | Bleach                  | https://www.npmjs.com/package/bleach                                                                |
+|                 | Angular-sanitize        | https://www.npmjs.com/package/angular-sanitize                                                      |
+|                 | Yahoo Html-purify       | https://www.npmjs.com/package/html-purify                                                           |
+|                 | Arcgis                  | https://www.npmjs.com/package/@esri/arcgis-html-sanitizer                                           |
+| Python          | Mozilla Bleach          | https://pypi.org/project/bleach/                                                                    |
+|                 | LXML                    | https://pypi.org/project/lxml/                                                                      |
+|                 | HTML Sanitizer          | https://pypi.org/project/html-sanitizer/                                                            |
+|                 | HTMLLaundry             | https://pypi.org/project/htmllaundry/                                                               |
+|                 | Django-html-sanitizer   | https://pypi.org/project/django-html_sanitizer/                                                     |
+| PHP             | Htmlpurifier            | https://packagist.org/packages/ezyang/htmlpurifier                                                  |
+|                 | HTML-sanitizer          | https://packagist.org/packages/tgalopin/html-sanitizer                                              |
+|                 | Symfony Sanitizer       | https://packagist.org/packages/symfony/html-sanitizer                                               |
+|                 | HTMLawed                | https://packagist.org/packages/htmlawed/htmlawed                                                    |
+|                 | Typo3 Sanitizer         | https://packagist.org/packages/typo3/html-sanitizer                                                 |
+| C#              | AntiXssEncoder          | https://learn.microsoft.com/en-us/dotnet/api/system.web.security.antixss                            |
+|                 | HTMLSanitizer           | https://www.nuget.org/packages/HtmlSanitizer                                                        |
+|                 | AjaxToolKit             | https://www.nuget.org/packages/AjaxControlToolkit.HtmlEditor.Sanitizer/                             |
+|                 | NSoup                   | https://www.nuget.org/packages/NSoup/                                                               |
+|                 | HTMLRuleSanitizer       | https://www.nuget.org/packages/Vereyon.Web.HtmlSanitizer                                            |
+| Java            | JSoup                   | https://github.com/jhy/jsoup                                                                        |
+|                 | OWASP HTML Sanitizer    | https://github.com/OWASP/java-html-sanitizer                                                        |
+|                 | Antisamy                | https://github.com/nahsra/antisamy                                                                  |
+|                 | HTMLCleaner             | http://htmlcleaner.sourceforge.net/index.php                                                        |
+
+
 
 ## Prerequosites
 
