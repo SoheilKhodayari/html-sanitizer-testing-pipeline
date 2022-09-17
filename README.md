@@ -82,7 +82,6 @@ options:
 $ cd php
 # CLI args
 $ php main.php /path/to/input/markups/file /path/to/output/file
-
 # defaults: input: ./../markups.txt, output: ./outputs/results.json
 $ php main.php 
 ````
