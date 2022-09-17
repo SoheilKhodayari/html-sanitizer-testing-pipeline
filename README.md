@@ -7,7 +7,7 @@ A collection of scripts to test and run popular HTML sanitizers of five differen
 Please note that at its current state, the code is a PoC and not a production-ready API.
 
 
-## Prerequosites
+## Prerequisites
 
 - Python3, and pip
 - PHP, and composer
