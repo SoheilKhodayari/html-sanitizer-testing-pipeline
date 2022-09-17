@@ -41,22 +41,6 @@ $ ./install.sh
 You can run sanitizers of each programming language under its own setup, as detailed below. All outputs will be available in the `outputs` directory of the respective language. 
 
 
-### Client-side JS
-
-First, run the backend webserver hosting the webpage with sanitizer tests:
-```
-$ cd clientside
-$ python3 manage.py runserver 8000
-```
-
-Then, simply visit `http://127.0.0.1:8000` in your web browser. 
-
-Within a few moments, you can see the results in the `clientside/outputs` folder. 
-
-
-**Note.** Change the default input/output parameters in `clientside/tests/sanitize.html`.
-
-
 ### Python
 
 ```bash
@@ -117,6 +101,23 @@ Alternatively, compile the `Sanitizer/Program.cs` with `csc` and run it with [`m
 ```bash
 $ mono Program.exe
 ```
+
+
+### Client-side JS
+
+First, run the backend webserver hosting the webpage with sanitizer tests:
+```
+$ cd clientside
+$ python3 manage.py runserver 8000
+```
+
+Then, simply visit `http://127.0.0.1:8000` in your web browser. 
+
+Within a few moments, you can see the results in the `clientside/outputs` folder. 
+
+
+**Note.** Change the default input/output parameters in `clientside/tests/sanitize.html`.
+
 
 
 ## Features and Support
