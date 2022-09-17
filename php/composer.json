@@ -1,0 +1,9 @@
+{
+    "require": {
+        "tgalopin/html-sanitizer": "^1.4",
+        "ezyang/htmlpurifier": "^4.13",
+        "xemlock/htmlpurifier-html5": "^0.1.11",
+        "typo3/html-sanitizer": "^2.0",
+        "symfony/html-sanitizer": "^6.1"
+    }
+}

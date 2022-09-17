@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+	<!-- utils -->
+	<script src="/static/js/jquery-3.3.1.min.js"></script>
+	<script>window.jQuery || document.write('<script src="./static/js/jquery-slim.min.js"><\/script>')</script>
+	<script src="/static/js/popper.min.js"></script> 
+	<script src="/static/js/bootstrap.min.js"></script> 
+	<script src="/static/js/bootstrap.tables.js"></script>
+	<script src="/static/js/holder.min.js"></script> 
+	<script src="/static/js/papaparse.min.js" type="text/javascript"></script>
+	<script src="/static/js/js-syntax-highlighter.js" type="text/javascript"></script>
+
+
+	<!-- sanitizer libraries -->
+	<script src="/static/sanitizers/dompurify/lib.js" type="text/javascript"></script>
+	<script src="/static/sanitizers/google-caja/lib.js" type="text/javascript"></script>
+	<script src="/static/sanitizers/google-closure-lib/lib.js" type="text/javascript"></script>
+	<!-- <script src="https://cdn.rawgit.com/google/closure-library/master/closure/goog/base.js" type="text/javascript"></script> -->
+	<script src="/static/sanitizers/js-xss/lib.js" type="text/javascript"></script>
+	<script src="/static/sanitizers/sanitize-html/lib.js" type="text/javascript"></script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-sanitize.min.js"></script> 
+
+<body>
+
+	<h2> DOM Clobbering: Sanitizer Tests</h2>
+	<hr>
+	<p> Please wait until the tests are finished....</p>
+	<div id="test-finished"></div>
+
+
+	 <div ng-app="myApp" ng-controller="myCtrl">
+	 	<textarea id="sanitization-input" ng-model="markup"></textarea>
+	 	<span id="sanitization-output" ng-bind-html="markup"> </span>
+	 </div>
+
+
+	<script type="text/javascript">
+	// google caja
+	function urlX(url) { if(/^https?:\/\//.test(url)) { return url }}
+	function idX(id) { return id }
+
+	</script>
+
+	<script type="text/javascript"> 
+	// google closure
+	try{
+		goog.require('goog.dom'); 
+		goog.require('goog.html.SafeHtml'); 
+		goog.require('goog.html.sanitizer.HtmlSanitizer'); 
+	}catch(e){
+		console.log(e)
+	}
+	</script> 
+
+
+	<script type="text/javascript">
+
+	// angular js initialization
+	var app = angular.module('myApp', ['ngSanitize']);
+	app.controller('myCtrl', function($scope) { });
+
+
+	var payloads = [];
+
+	// utils
+	function prepare_data(rawData) {
+
+		var output = [];
+		for (let [idx, markup] of rawData.entries()) {
+
+			if (idx === 0) {
+				continue; // pass the CSV header
+			}
+
+			let formattedMarkupData = {
+				"id": idx,
+				"Markup": markup[0].trim(),
+				"Clobbered": markup[1].trim(),
+				"Tag1": markup[2].trim(),
+				"Tag2": markup[3].trim(),
+				"Attributes1": markup[4].trim(),
+				"Attributes2": markup[5].trim(),
+				"RelationType": markup[6].trim(),
+				"ReferenceType": markup[7].trim()
+			}
+			output.push(formattedMarkupData);
+			payloads.push(markup[0].trim())
+		}
+		return output;
+	}
+
+
+	// load markups
+	const fetch_markup_headers = {
+		method: 'get',
+		headers: {
+			'content-type': 'text/csv;charset=UTF-8',
+		},
+	};
+
+
+    const response = fetch("/static/dom-clobbering-markups.csv", fetch_markup_headers)
+        .then(response => response.text())
+        .then(raw_data => Papa.parse(raw_data))
+        .catch(err => console.log(err))
+
+
+    var results = {
+    	'dompurify': [],
+    	'caja': [],
+    	'closure': [],
+    	'jsxss': [],
+    	'sanitizehtml': [],
+    	'angular': [],
+    };
+
+    response.then(raw_data => {
+        dom_clobbering_markups = prepare_data(raw_data.data);
+		
+        var input = '';
+        var output = '';
+
+        try{
+        	var closure_sanitizer = new goog.html.sanitizer.HtmlSanitizer.Builder().build();
+        }catch(e){
+        	console.warn(e);
+        } 
+        
+
+
+        for(var i=0; i<dom_clobbering_markups.length; i++){
+        	input = dom_clobbering_markups[i]["Markup"];
+			
+			// // dompurify
+			try{
+				output = DOMPurify.sanitize(input);
+				results['dompurify'].push({
+					'input': input,
+					'output': '' + output
+				});
+			}catch(err) {console.warn(err); output = 'error'}
+
+
+			// // caja
+			try{
+				output = html_sanitize(input, urlX, idX);
+				results['caja'].push({
+					'input': input,
+					'output': '' + output
+				});
+			}catch(err) {console.warn(err);  output = 'error'}
+
+
+
+			// // closure 
+			try {
+				var fragment = goog.dom.safeHtmlToNode(closure_sanitizer.sanitize(input));
+				var template = window.document.createElement('template');
+				template.appendChild(fragment.cloneNode(true));
+				output = template.innerHTML;
+				results['closure'].push({
+					'input': input,
+					'output': '' + output
+				});
+			}
+			catch(err) {console.warn(err); output = 'error'}
+
+
+			// // jsxss
+			try{
+				output = filterXSS(input);
+				results['jsxss'].push({
+					'input': input,
+					'output': '' + output
+				});
+			}catch(err) {console.warn(err); output = 'error'}
+
+
+			// // sanitizehtml
+			try{
+				output = sanitizeHtml(input);
+				results['sanitizehtml'].push({
+					'input': input,
+					'output': '' + output
+				});
+			}catch(err) {console.warn(err); output = 'error'}
+
+
+			// angular js
+			try{
+				// calls ngSanitize.$sanitize(html) 
+				$("#sanitization-input").val(input).trigger('input');
+
+				// read the output
+				output = document.getElementById('sanitization-output').innerHTML;
+				results['angular'].push({
+					'input': input,
+					'output': '' + output
+				});
+			}catch(err) {console.warn(err);}
+
+        }
+
+    })
+    .then(async ()=> {
+    	
+    	var postDataEndpoint = "{% url 'backend:post_sanitizer_test' %}";
+    	const response= await fetch(postDataEndpoint, {
+	        method: 'POST',
+	        body: JSON.stringify(results),
+    	});
+
+    	document.getElementById('test-finished').innerHTML = '<b>Finished Successfully.<b>'
+    	return response.json();
+
+	});	
+
+
+
+	</script>
+
+
+
+</body>
+</html>

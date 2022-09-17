@@ -1,0 +1,64 @@
+# outputs
+clientside/outputs
+!clientside/outputs/.gitkeep
+
+php/outputs
+!php/outputs/.gitkeep
+
+python/outputs
+!python/outputs/.gitkeep
+
+node-js/outputs
+!node-js/outputs/.gitkeep
+
+java/outputs
+!java/outputs/.gitkeep
+
+csharp/outputs
+!csharp/outputs/.gitkeep
+
+# npm 
+node-js/node_modules
+node-js/package-lock.json
+
+# php vendors
+php/vendor
+php/composer.lock
+
+# vs code
+.vs
+
+# python
+*.pyc
+
+
+# C#
+csharp/packages
+
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
+
+# java
+java/.gradle
+java/.idea
+java/target
+
+# os
+.DS_Store
+
+# logs and databases
+log/
+*.log
+*.sql
+*.sqlite
+
+# compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so

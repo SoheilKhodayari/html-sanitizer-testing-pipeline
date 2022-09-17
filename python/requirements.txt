@@ -1,0 +1,7 @@
+htmllaundry==2.2
+html_sanitizer==1.9.3
+bleach==4.1.0
+lxml==4.7.1
+Django==3.2.15
+django-html-sanitizer==0.1.5
+argparse

@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@esri/arcgis-html-sanitizer": "^3.0.0",
+    "angular": "^1.8.3",
+    "angular-sanitize": "^1.8.2",
+    "bleach": "^0.3.0",
+    "domino": "^2.1.6",
+    "fs": "^0.0.1-security",
+    "html-purify": "^1.1.0",
+    "insane": "^2.6.2",
+    "jsdom": "^20.0.0",
+    "path": "^0.12.7",
+    "process.argv": "^0.6.0",
+    "ws": "^8.8.1",
+    "xhr2": "^0.2.1"
+  }
+}
