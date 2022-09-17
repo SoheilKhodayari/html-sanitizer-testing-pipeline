@@ -1,6 +1,6 @@
 # HTML Sanitizer Testing Pipeline (HTML-ST)
 
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Sanitizer-Testing-Pipeline&url=https://soheilkhodayari.github.io/html-sanitizers-testing-pipeline/)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Sanitizer-Testing-Pipeline&url=https://github.com/SoheilKhodayari/html-sanitizer-testing-pipeline)
 
 A collection of scripts to test and run popular HTML sanitizers of five different programming languages. 
 
